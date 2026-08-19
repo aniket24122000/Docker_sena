@@ -1,20 +1,29 @@
-import os
-import mysql.connector
 from fastapi import FastAPI
+from pathlib import Path
 
 app = FastAPI()
 
-DB_HOST = os.getenv("DB_HOST", "localhost")
+DATA_DIR = Path("/app/data")
+DATA_DIR.mkdir(exist_ok=True)
 
-@app.get("/")
-def home():
-    connection = mysql.connector.connect(
-        host=DB_HOST,
-        user="root",
-        password="root",
-        database="testdb"
-    )
+@app.post("/save")
+def save_data():
+    file = DATA_DIR / "users.txt"
 
-    connection.close()
+    with open(file, "a") as f:
+        f.write("Aniket\n")
 
-    return {"message": "Database connection successful"}
+    return {"message": "Data saved"}
+
+
+@app.get("/users")
+def get_users():
+    file = DATA_DIR / "users.txt"
+
+    if not file.exists():
+        return {"users": []}
+
+    with open(file, "r") as f:
+        users = f.read().splitlines()
+
+    return {"users": users}
