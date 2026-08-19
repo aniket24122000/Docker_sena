@@ -1,13 +1,20 @@
-import requests
+import os
+import mysql.connector
 from fastapi import FastAPI
 
 app = FastAPI()
 
+DB_HOST = os.getenv("DB_HOST", "localhost")
+
 @app.get("/")
 def home():
-    response = requests.get("https://httpbin.org/get")
+    connection = mysql.connector.connect(
+        host=DB_HOST,
+        user="root",
+        password="root",
+        database="testdb"
+    )
 
-    return {
-        "message": "API is working",
-        "status": response.status_code
-    }
+    connection.close()
+
+    return {"message": "Database connection successful"}
