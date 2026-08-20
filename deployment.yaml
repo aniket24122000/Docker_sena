@@ -21,7 +21,7 @@ spec:
 
           command: ["uvicorn"]
           args:
-            - "wrong:app"
+            - "main:app"
             - "--host"
             - "0.0.0.0"
             - "--port"
