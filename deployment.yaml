@@ -18,6 +18,7 @@ spec:
     spec:
       containers:
         - name: fastapi
+
           image: aniket24122000/fastapi-demo:v1
 
           command: ["uvicorn"]
@@ -32,9 +33,19 @@ spec:
           ports:
             - containerPort: 8000
 
+          resources:
+            requests:
+              cpu: "10"
+              memory: "20Gi"
+
+            limits:
+              cpu: "10"
+              memory: "20Gi"
+
 ---
 apiVersion: v1
 kind: Service
+
 metadata:
   name: fastapi-service
 
@@ -45,7 +56,6 @@ spec:
     app: fastapi
 
   ports:
-    - protocol: TCP
-      port: 8000
+    - port: 8000
       targetPort: 8000
       nodePort: 30080
