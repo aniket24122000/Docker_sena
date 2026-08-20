@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: fastapi
+
+  template:
+    metadata:
+      labels:
+        app: fastapi
+
+    spec:
+      containers:
+        - name: fastapi
+          image: aniket24122000/fastapi-demo:v1
+
+          command: ["uvicorn"]
+          args:
+            - "wrong:app"
+            - "--host"
+            - "0.0.0.0"
+            - "--port"
+            - "8000"
+
+          ports:
+            - containerPort: 8000
