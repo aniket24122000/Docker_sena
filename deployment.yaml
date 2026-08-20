@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: fastapi-deployment
+
 spec:
   replicas: 2
 
@@ -17,9 +18,10 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: aniket24122000/fastapi-demo:v1
+          image: yourdockerhub/fastapi-demo:v1
 
           command: ["uvicorn"]
+
           args:
             - "main:app"
             - "--host"
@@ -29,3 +31,21 @@ spec:
 
           ports:
             - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi-service
+
+spec:
+  type: NodePort
+
+  selector:
+    app: fastapi
+
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30080
