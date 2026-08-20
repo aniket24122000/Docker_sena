@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: yourdockerhub/fastapi-demo:v1
+          image: aniket24122000/fastapi-demo:v1
 
           command: ["uvicorn"]
 
