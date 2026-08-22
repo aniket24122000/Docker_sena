@@ -4,8 +4,12 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "FastAPI Kubernetes is working"}
+    return {"message": "FastAPI is running"}
 
 @app.get("/health")
 def health():
     return {"status": "UP"}
+
+@app.get("/live")
+def live():
+    return {"status": "alive"}

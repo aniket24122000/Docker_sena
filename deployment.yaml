@@ -5,7 +5,7 @@ metadata:
   name: fastapi-deployment
 
 spec:
-  replicas: 2
+  replicas: 1
 
   selector:
     matchLabels:
@@ -20,7 +20,7 @@ spec:
       containers:
         - name: fastapi
 
-          image: aniket24122000/fastapi-demo:v1
+          image: aniket24122000/fastapi-demo:v3
 
           command: ["uvicorn"]
 
@@ -34,9 +34,9 @@ spec:
           ports:
             - containerPort: 8000
 
-          readinessProbe:
+          livenessProbe:
             httpGet:
-              path: /wrong-health
+              path: /wrong-live
               port: 8000
 
             initialDelaySeconds: 5
