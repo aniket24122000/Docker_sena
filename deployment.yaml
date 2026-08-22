@@ -34,15 +34,7 @@ spec:
           ports:
             - containerPort: 8000
 
-          livenessProbe:
-            httpGet:
-              path: /wrong-live
-              port: 8000
-
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            timeoutSeconds: 2
-            failureThreshold: 3
+          # DATABASE_URL intentionally missing
 
 ---
 apiVersion: v1
