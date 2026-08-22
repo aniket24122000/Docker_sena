@@ -2,18 +2,10 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-data = []
-
 @app.get("/")
 def home():
-    return {"message": "FastAPI running"}
+    return {"message": "FastAPI Kubernetes is working"}
 
-@app.get("/memory")
-def consume_memory():
-    # Intentionally allocate large memory
-    data.append("A" * (100 * 1024 * 1024))
-
-    return {
-        "message": "Memory allocated",
-        "chunks": len(data)
-    }
+@app.get("/health")
+def health():
+    return {"status": "UP"}
