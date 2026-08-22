@@ -20,7 +20,7 @@ spec:
       containers:
         - name: fastapi
 
-          image: aniket24122000/fastapi-demo:v3
+          image: aniket24122000/fastapi-demo:v4
 
           command: ["uvicorn"]
 

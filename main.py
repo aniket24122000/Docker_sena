@@ -1,15 +1,12 @@
+import os
 from fastapi import FastAPI
+
+DATABASE_URL = os.environ["DATABASE_URL"]
 
 app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "FastAPI is running"}
-
-@app.get("/health")
-def health():
-    return {"status": "UP"}
-
-@app.get("/live")
-def live():
-    return {"status": "alive"}
+    return {
+        "message": "FastAPI is running"
+    }
