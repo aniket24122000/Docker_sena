@@ -9,12 +9,12 @@ spec:
 
   selector:
     matchLabels:
-      app: fastapi-app
+      app: fastapi
 
   template:
     metadata:
       labels:
-        app: fastapi-app
+        app: fastapi
 
     spec:
       containers:
@@ -45,7 +45,7 @@ spec:
   type: NodePort
 
   selector:
-    app: fastapi
+    app: wrong-app
 
   ports:
     - protocol: TCP
